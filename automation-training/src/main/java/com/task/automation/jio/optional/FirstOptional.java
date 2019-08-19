@@ -9,15 +9,16 @@ public class FirstOptional {
         File dir = new File ("data/firstTask");
         dir.mkdirs();
         File file = new File(dir+"/inPut.txt");
+        File outPutFile = new File(dir+"/outPut.txt");
         try {
             file.createNewFile();
+            outPutFile.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
         ArrayList<Integer> array = new ArrayList<Integer>();
 
-        try (FileWriter fileWriter = new FileWriter(file);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
             for (int i = 0; i<5; i++) {
                 bufferedWriter.write(Integer.toString((int)(Math.random()*100)));
                 bufferedWriter.newLine();
@@ -27,18 +28,9 @@ public class FirstOptional {
             e.printStackTrace();
         }
 
-        File outPutFile = new File(dir+"/outPut.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (FileReader reader = new FileReader(file);
-             BufferedReader bufferedReader = new BufferedReader(reader);
-             FileWriter writer = new FileWriter(outPutFile);
-             BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outPutFile))) {
             String tmpString = null;
-            int i = 0;
             while ((tmpString = bufferedReader.readLine())!=null) {
                 array.add(Integer.parseInt(tmpString));
             }
@@ -52,6 +44,5 @@ public class FirstOptional {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
