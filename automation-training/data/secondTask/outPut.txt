@@ -8,60 +8,22 @@
 { )sgra ][gnirtS(niam diov citats cilbup    
 ;)"ksaTdnoces/atad"( eliF wen = rid eliF        
 ;)(sridkm.rid        
-;)"txt.edoc_avaj/"+rid(eliF wen = elif eliF        
+;)"txt.tuPtuo/"+rid(eliF wen = eliFtuPtuo eliF        
 
-{ yrt        
-;)(eliFweNetaerc.elif            
-{ )e noitpecxEOI( hctac }        
-;)(ecarTkcatStnirp.e            
-}        
-
-;))elif(retirWeliF wen(retirWdereffuB wen = retirWdereffub retirWdereffuB(yrt        
+;))eliFtuPtuo(retirWeliF wen(retirWdereffuB wen = retirWdereffub retirWdereffuB(yrt        
 + "/noitamotua/ksat/moc/avaj/niam/crs"(redaeReliF wen(redaeRdereffuB wen = redaeRdereffub redaeRdereffuB        
 { )))"avaj.ksaTdnoceS/lanoitpo/oij"                
-;)(>gnirtS<tsiLyarrA wen = edoCavaj >gnirtS<tsiLyarrA            
-;llun = gnirtSpmt gnirtS            
-{ )llun =! ))(eniLdaer.redaeRdereffub = gnirtSpmt((elihw            
-;)gnirtSpmt(dda.edoCavaj                
-}            
-
-{ )edoCavaj:eniLedoCavaj gnirtS( rof            
-;)eniLedoCavaj(etirw.retirWdereffub                
-;)(eniLwen.retirWdereffub                
-}            
-{ )e noitpecxEOI( hctac }        
-;)(ecarTkcatStnirp.e            
-}        
-
-;)"txt.tuPtuo/"+rid(eliF wen = eliFtuPtuo eliF        
-{ yrt        
-;)(eliFweNetaerc.elif            
-{ )e noitpecxEOI( hctac }        
-;)(ecarTkcatStnirp.e            
-}        
-;)elif(redaeReliF wen = redaer redaeReliF( yrt        
-;)redaer(redaeRdereffuB wen = redaeRdereffub redaeRdereffuB             
-;)eliFtuPtuo(retirWeliF wen = retirw retirWeliF             
-{ ))retirw(retirWdereffuB wen = retirWdereffub retirWdereffuB             
-
-;llun = gnirtSpmt gnirtS            
-
 ;)(>gnirtS<tsiLyarrA wen = yarra >gnirtS<tsiLyarrA            
+;llun = gnirtSpmt gnirtS            
 { )llun=!))(eniLdaer.redaeRdereffub = gnirtSpmt(( elihw            
 ;)(redliuBgnirtS wen = tluser redliuBgnirtS                
 ;)(esrever.)gnirtSpmt(dneppa.tluser                
-;))(gnirtSot.tluser(dda.yarra                
-}            
-
-
-{ )yarra:mele gnirtS( rof            
-;)mele(etirw.retirWdereffub                
+;))(gnirtSot.tluser(etirw.retirWdereffub                
 ;)(eniLwen.retirWdereffub                
 }            
 
 { )e noitpecxEOI( hctac }        
 ;)(ecarTkcatStnirp.e            
 }        
-
 }    
 }
