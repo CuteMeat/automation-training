@@ -1,9 +1,8 @@
 package com.task.automation.exceptions.main;
 
-import com.task.automation.exceptions.main.exception.OutOfRangeOfAcceptableMarkValuesException;
+import com.task.automation.exceptions.main.exception.MarkOutOfBoundsException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Discipline {
     private String name;
@@ -19,9 +18,9 @@ public class Discipline {
         this.marks = new ArrayList<Integer>();
     }
 
-    public void addMark (int mark) throws OutOfRangeOfAcceptableMarkValuesException {
+    public void addMark (int mark) throws MarkOutOfBoundsException {
         if ((mark < 0) || (mark>10)) {
-            throw new OutOfRangeOfAcceptableMarkValuesException("Enter mark is incorrect");
+            throw new MarkOutOfBoundsException("Enter mark is incorrect");
         }
         else
             marks.add(mark);

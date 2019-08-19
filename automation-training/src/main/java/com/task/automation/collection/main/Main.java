@@ -1,52 +1,39 @@
 package com.task.automation.collection.main;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner in = new Scanner(System.in);
-    public static ArrayList<Salad> salads = new ArrayList<Salad>();
     public static void main(String[] args) {
-        // write your code here
-//        ArrayList<Salad> salads = new ArrayList<Salad>();
-//        salads.add(new Salad("Salad1"));
-//        ArrayList<Vegetable> vegetables = new ArrayList<Vegetable>();
-//        vegetables.add(new Zucchini());
-//        vegetables.add(new Tomato());
-//        vegetables.add(new Avocado());
-//
-//        //salads.get(0).addVegetable(vegetables);
-//
-//        System.out.println(salads.get(0));
-//
-//        salads.get(0).sortByName();
-//        System.out.println((salads.get(0)));
-//
-//        salads.get(0).sortByCalories();1
-//        System.out.println((salads.get(0)));
-//
-//        salads.get(0).removeVegetable(vegetables.get(1));
-//        System.out.println((salads.get(0)));
-        mainMenu();
-        
+        Salad salad = new Salad();
+        mainMenu(salad);
+        in.close();
     }
     
-    public static void mainMenu() {
-        System.out.println("1. Create salad");
-        System.out.println("2. Exit program;");
+    public static void mainMenu(Salad salad) {
 
-        int check = in.nextInt();
 
-        switch (check) {
-            case 1:
-                clearScreen();
-                createSalad();
-                break;
-            case 2:
-                clearScreen();
-            case 3:
-                in.close();
-            default:
+        int check = -1;
+        Boolean exitCheck = true;
+        while (exitCheck) {
+            System.out.println("1. Create salad");
+            System.out.println("2. View salad");
+            System.out.println("0. Exit program;");
+            check = in.nextInt();
+            switch (check) {
+                case 1:
+                    clearScreen();
+                    createSalad(salad);
+                    break;
+                case 2:
+                    clearScreen();
+                    saladView(salad);
+                    break;
+                case 0:
+                    exitCheck = false;
+                    break;
+                default:
+            }
         }
     }
 
@@ -55,100 +42,151 @@ public class Main {
         System.out.flush();
     }
 
-    public static void createSalad() {
-        System.out.print("Enter name of salad: ");
-        String nameOfSalad = in.nextLine();
-        salads.add(new Salad(nameOfSalad));
-        int check;
+    public static void createSalad(Salad salad) {
+        //salad = new Salad("nameOfSalad");
+        int check = -1;
 
-        System.out.println("1. Add vegetable;");
-        System.out.println("2. Remove vegetable;");
-        System.out.println("3. Save salad.");
+        Boolean exitCheck = true;
 
-        check = in.nextInt();
-
-        switch (check) {
-            case 1:
-                clearScreen();
-                menuForAddingVegetables();
-                break;
-            case 2:
-                break;
-            case 3:
-                mainMenu();
-                break;
-            default:                
+        while (exitCheck) {
+            System.out.println("1. Add vegetable;");
+            System.out.println("2. Remove vegetable;");
+            System.out.println("3. Save salad.");
+            check = in.nextInt();
+            switch (check) {
+                case 1:
+                    clearScreen();
+                    addingVegetables(salad);
+                    break;
+                case 2:
+                    removeVegetable(salad);
+                    break;
+                case 3:
+                    exitCheck = false;
+                    break;
+                default:
+            }
         }
     }
 
-    public static void saladView() {
-        for (Salad salad:salads) {
-            System.out.println(salad);
+    public static void saladView(Salad salad) {
+        for (Vegetable vegetable:salad.getVegetables()) {
+            System.out.println(vegetable.name + ":\t"+vegetable.calorie);
         }
 
-        System.out.println("1. Sort by name;");
-        System.out.println("2. Sort by calories;");
-        System.out.println("3. Find vegetables with selected calorie;");
-        System.out.println("4. Exit;");
 
-        int check = in.nextInt();
 
-        switch (check) {
-            case 1:
-                clearScreen();
-                for (Salad salad:salads) {
+        int check = -1;
+        Boolean exitCheck = true;
+
+        while (exitCheck) {
+            System.out.println("1. Sort by name;");
+            System.out.println("2. Sort by calories;");
+            System.out.println("3. Find vegetables with selected calorie;");
+            System.out.println("0. Exit;");
+            check = in.nextInt();
+            switch (check) {
+                case 1:
+                    clearScreen();
                     salad.sortByName();
                     System.out.println(salad);
-                }
-                break;
-            case 2:
-                clearScreen();
-                for (Salad salad:salads) {
+                    break;
+                case 2:
+                    clearScreen();
                     salad.sortByCalories();
                     System.out.println(salad);
-                }
-                break;
-            case 3:
-
-                break;
-            case 4:
-                mainMenu();
-                break;
-            default:
+                    break;
+                case 3:
+                    System.out.println("Input min:");
+                    int min = in.nextInt();
+                    System.out.println("Input max:");
+                    int max = in.nextInt();
+                    salad.findingVegetablesWithCalorieAroundSelected(min, max);
+                    break;
+                case 0:
+                    exitCheck = false;
+                    break;
+                default:
+            }
         }
     }
 
-    public static void menuForAddingVegetables() {
-        System.out.println("Select vegetable:");
-        System.out.println("1. Avocado;");
-        System.out.println("2. Beet;");
-        System.out.println("3. Cucumber;");
-        System.out.println("4. Spinach;");
-        System.out.println("5. Tomato;");
-        System.out.println("6. Zucchini;");
+    public static void addingVegetables(Salad salad) {
 
-
-
-        while (salads.size()<=6) {
+        Boolean exitCheck = true;
+        while (exitCheck && (salad.getVegetables().size()<7)) {
+            System.out.println("1. TomatoAvocado;");
+            System.out.println("2. Cucumber;");
+            System.out.println("3. Beet;");
+            System.out.println("4. Spinach;");
+            System.out.println("5. Avocado;");
+            System.out.println("6. Zucchini;");
+            System.out.println("Select vegetable or enter 0 for exit:");
             int check = in.nextInt();
             switch (check) {
                 case 1:
-                    salads.get(salads.size()-1).addVegetable(new Avocado());
+                    Vegetable tomato = new Vegetable("Tomato", 20);
+                    salad.addVegetable(tomato);
                     break;
                 case 2:
-                    salads.get(salads.size()-1).addVegetable(new Beet());
+                    Vegetable cucumber = new Vegetable("Cucumber", 13.5);
+                    salad.addVegetable(cucumber);
                     break;
                 case 3:
-                    salads.get(salads.size()-1).addVegetable(new Cucumber());
+                    Vegetable beet = new Vegetable("Beet", 43);
+                    salad.addVegetable(beet);
                     break;
                 case 4:
-                    salads.get(salads.size()-1).addVegetable(new Spinach());
+                    Vegetable spinach = new Vegetable("Spinach", 16);
+                    salad.addVegetable(spinach);
                     break;
                 case 5:
-                    salads.get(salads.size()-1).addVegetable(new Tomato());
+                    Vegetable avocado = new Vegetable("Avocado", 160);
+                    salad.addVegetable(avocado);
                     break;
                 case 6:
-                    salads.get(salads.size()-1).addVegetable(new Zucchini());
+                    Vegetable zucchini = new Vegetable("Zucchini", 13.5);
+                    salad.addVegetable(zucchini);
+                    break;
+                case 0:
+                    exitCheck = false;
+                    break;
+                default:
+                    System.out.println("Error.");
+            }
+        }
+    }
+
+    public static void removeVegetable(Salad salad) {
+
+        Boolean exitCheck = true;
+
+        while (exitCheck && (salad.getVegetables().size()>0)) {
+            for (int i = 0; i < salad.getVegetables().size(); i++) {
+                System.out.println((i+1)+". "+salad.getVegetables().get(i).getName());
+            }
+            int check = in.nextInt();
+            switch (check) {
+                case 1:
+                    salad.removeVegetable(0);
+                    break;
+                case 2:
+                    salad.removeVegetable(1);
+                    break;
+                case 3:
+                    salad.removeVegetable(2);
+                    break;
+                case 4:
+                    salad.removeVegetable(3);
+                    break;
+                case 5:
+                    salad.removeVegetable(4);
+                    break;
+                case 6:
+                    salad.removeVegetable(5);
+                    break;
+                case 0:
+                    exitCheck = false;
                     break;
                 default:
                     System.out.println("Error.");

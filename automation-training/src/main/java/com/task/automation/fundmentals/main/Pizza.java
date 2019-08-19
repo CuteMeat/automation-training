@@ -23,8 +23,8 @@ public class Pizza {
     public void addIngredient(Ingredient newIngredient) {
         Boolean repeatCheck = false;
 
-        for (Ingredient ingrуdient:ingredients) {
-            if(newIngredient.getName()==ingrуdient.getName()) {
+        for (Ingredient ingredient:ingredients) {
+            if(newIngredient.getName()==ingredient.getName()) {
                 System.out.printf("The %s ingredient was added earlier\n", newIngredient.getName());
                 repeatCheck = true;
                 break;

@@ -17,15 +17,4 @@ public class Student {
     public void addDiscipline(Discipline newDiscipline) {
         disciplines.add(newDiscipline);
     }
-
-    public double averageMark() {
-        double averageMark = 0;
-        for (Discipline discipline:disciplines) {
-            for (Integer mark:discipline.getMarks()) {
-                averageMark+=mark;
-            }
-        }
-        averageMark/=disciplines.size();
-        return averageMark;
-    }
 }

@@ -17,24 +17,4 @@ public class Faculty {
     public void addGroup(Group newGroup) {
         groups.add(newGroup);
     }
-
-    public double calculationOfTheAverageScoreForASpecificSubjectInACertainGroupAtACertainFaculty
-            (String selectedDiscipline, String selectedGroup) {
-        double score = 0;
-        for (Group group:groups) {
-            if (group.getName()==selectedGroup) {
-                for (Student student:group.getStudents()) {
-                    for (Discipline discipline:student.getDisciplines()) {
-                        if (discipline.getName()==selectedDiscipline) {
-                            for (Integer mark:discipline.getMarks()) {
-                                score+=mark;
-                            }
-                            score/=discipline.getMarks().size();
-                        }
-                    }
-                }
-            }
-        }
-        return score;
-    }
 }

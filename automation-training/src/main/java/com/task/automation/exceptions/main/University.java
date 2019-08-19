@@ -1,9 +1,6 @@
 package com.task.automation.exceptions.main;
 
-import com.task.automation.exceptions.main.exception.LackOfDisciplineException;
-import com.task.automation.exceptions.main.exception.LackOfFacultyException;
-import com.task.automation.exceptions.main.exception.LackOfGroupException;
-import com.task.automation.exceptions.main.exception.LackOfStudentsInTheGroupException;
+import com.task.automation.exceptions.main.exception.*;
 
 import java.util.ArrayList;
 
@@ -35,8 +32,9 @@ public class University {
                     for (Discipline discipline:student.getDisciplines()) {
                         result.append("\n\t\t\t\t").append(discipline.getName()).append(":");
                         for (Integer mark:discipline.getMarks()) {
-                            result.append(discipline.getMarks());
+                            result.append(mark).append("\t");
                         }
+                        result.append("\n");
                     }
                 }
             }
@@ -45,125 +43,109 @@ public class University {
     }
 
     public double calculationOfTheAverageScoreForASpecificSubjectInACertainGroupAtACertainFaculty
-            (String selectedDiscipline, String selectedGroup, String selectedFaculty) throws LackOfFacultyException,
-            LackOfGroupException, LackOfStudentsInTheGroupException, LackOfDisciplineException {
+            (String selectedDiscipline, String selectedGroup, String selectedFaculty) throws
+            LackOfFacultyInTheUniversityException, LackOfGroupAtTheFacultyException, LackOfStudentsInTheGroupException, LackOfDisciplineOnTheStudentException {
         double score = 0;
-        if (faculties.size() == 0) {
-            throw new LackOfFacultyException("Lack of faculty in this university.");
-        }
-        else {
+        if (faculties.size() != 0) {
             for (Faculty faculty:faculties) {
-                if (faculty.getName() == selectedFaculty){
-                    if (faculty.getGroup().size() == 0) {
-                        throw new LackOfGroupException("Lack of group in this faculty.");
-                    }
-                    else {
+                if (faculty.getName() == selectedFaculty) {
+                    if (faculty.getGroup().size() != 0){
                         for (Group group:faculty.getGroup()) {
                             if(group.getName() == selectedGroup) {
-                                if (group.getStudents().size() == 0) {
-                                    throw new LackOfStudentsInTheGroupException("Lack of student in this group.");
-                                }
-                                else {
-                                    for (Student student : group.getStudents()) {
-                                        if (student.getDisciplines().size() == 0) {
-                                            throw new LackOfDisciplineException("Lack of discipline.");
-                                        }
-                                        else {
-                                            for (Discipline discipline : student.getDisciplines()) {
+                                if (group.getStudents().size() != 0) {
+                                    for (Student student:group.getStudents()) {
+                                        if (student.getDisciplines().size() != 0) {
+                                            for (Discipline discipline:student.getDisciplines()) {
                                                 if (discipline.getName() == selectedDiscipline) {
-                                                    for (Integer mark : discipline.getMarks()) {
-                                                        score += mark;
-                                                    }
+                                                    if (discipline.getMarks().size() != 0) {
+                                                        for (Integer mark:discipline.getMarks()) {
+                                                            score+=mark;
+                                                        }
+                                                    } else return 0;
                                                     score /= discipline.getMarks().size();
-                                                }
+                                                } else return -1;
                                             }
-                                        }
+                                            return score;
+                                        } else throw new LackOfDisciplineOnTheStudentException
+                                                ("Student " + student.getName() + " hasn't discipline");
                                     }
-                                }
-                            }
+                                } else throw new LackOfStudentsInTheGroupException
+                                        ("Lack of student in " + group.getName() + " group");
+                            } else return -1;
                         }
-                    }
-                }
+                    } else throw new LackOfGroupAtTheFacultyException("Lack of group in "+faculty.getName() + " faculty");
+                } else return -1;
             }
-        }
-        return score;
+        } else throw new LackOfFacultyInTheUniversityException("Lack of faculty in this university.");
+
+        return (-1);
     }
 
     public double calculationAverageScoreForADisciplineForTheWholeUniversity(String selectedDiscipline) throws
-            LackOfFacultyException, LackOfGroupException, LackOfStudentsInTheGroupException, LackOfDisciplineException {
+            LackOfFacultyInTheUniversityException, LackOfGroupAtTheFacultyException,
+            LackOfStudentsInTheGroupException, LackOfDisciplineOnTheStudentException {
         double score = 0;
-        if (faculties.size() == 0) {
-            throw new LackOfFacultyException("Lack of faculty in this university.");
-        }
-        else {
+        if (faculties.size() != 0) {
             for (Faculty faculty:faculties) {
-                if (faculty.getGroup().size() == 0) {
-                    throw new LackOfGroupException("Lack of group in this faculty.");
-                }
-                else {
+                if (faculty.getGroup().size() != 0){
                     for (Group group:faculty.getGroup()) {
-                        if (group.getStudents().size() == 0) {
-                            throw new LackOfStudentsInTheGroupException("Lack of student in this group.");
-                        }
-                        else {
-                            for (Student student : group.getStudents()) {
-                                if (student.getDisciplines().size() == 0) {
-                                    throw new LackOfDisciplineException("Lack of discipline.");
-                                } else {
-                                    for (Discipline discipline : student.getDisciplines()) {
+                        if (group.getStudents().size() != 0) {
+                            for (Student student:group.getStudents()) {
+                                if (student.getDisciplines().size() != 0) {
+                                    for (Discipline discipline:student.getDisciplines()) {
                                         if (discipline.getName() == selectedDiscipline) {
-                                            for (Integer mark : discipline.getMarks()) {
-                                            score += mark;
-                                        }
+                                            if (discipline.getMarks().size() != 0) {
+                                                for (Integer mark:discipline.getMarks()) {
+                                                    score+=mark;
+                                                }
+                                            } else return 0;
                                             score /= discipline.getMarks().size();
-                                        }
+                                        }else return -1;
                                     }
-                                }
+                                    return score;
+                                } else throw new LackOfDisciplineOnTheStudentException
+                                        ("Student " + student.getName() + " hasn't discipline");
                             }
-                        }
+                        } else throw new LackOfStudentsInTheGroupException
+                                ("Lack of student in " + group.getName() + " group");
                     }
-                }
+                } else throw new LackOfGroupAtTheFacultyException("Lack of group in "+faculty.getName() + " faculty");
             }
-        }
-        return score;
+        } else throw new LackOfFacultyInTheUniversityException("Lack of faculty in this university.");
+
+        return -1;
     }
 
     public double calculationAverageScoreForStudent(String selectedStudent) throws
-            LackOfFacultyException, LackOfGroupException, LackOfStudentsInTheGroupException, LackOfDisciplineException {
+            LackOfFacultyInTheUniversityException, LackOfGroupAtTheFacultyException,
+            LackOfStudentsInTheGroupException, LackOfDisciplineOnTheStudentException {
         double score = 0;
-        if (faculties.size() == 0) {
-            throw new LackOfFacultyException("Lack of faculty in this university.");
-        }
-        else {
+        int studentCounter = 0;
+        if (faculties.size() != 0) {
             for (Faculty faculty:faculties) {
-                if (faculty.getGroup().size() == 0) {
-                    throw new LackOfGroupException("Lack of group in this faculty.");
-                }
-                else {
+                if (faculty.getGroup().size() != 0){
                     for (Group group:faculty.getGroup()) {
-                        if (group.getStudents().size() == 0) {
-                            throw new LackOfStudentsInTheGroupException("Lack of student in this group.");
-                        }
-                        else {
-                            for (Student student : group.getStudents()) {
+                        if (group.getStudents().size() != 0) {
+                            for (Student student:group.getStudents()) {
                                 if (student.getName() == selectedStudent) {
-                                    if (student.getDisciplines().size() == 0) {
-                                        throw new LackOfDisciplineException("Lack of discipline.");
-                                    } else {
-                                        for (Discipline discipline : student.getDisciplines()) {
-                                            for (Integer mark : discipline.getMarks()) {
-                                                score += mark;
-                                            }
-                                            score /= discipline.getMarks().size();
+                                    if (student.getDisciplines().size() != 0) {
+                                        for (Discipline discipline:student.getDisciplines()) {
+                                            score+=discipline.getMarks().get(studentCounter);
                                         }
-                                    }
+                                        score /= student.getDisciplines().size();
+                                        return score;
+                                    } else throw new LackOfDisciplineOnTheStudentException
+                                            ("Student " + student.getName() + " hasn't discipline");
                                 }
+                                studentCounter++;
                             }
-                        }
+                        } else throw new LackOfStudentsInTheGroupException
+                                ("Lack of student in " + group.getName() + " group");
                     }
-                }
+                } else throw new LackOfGroupAtTheFacultyException("Lack of group in "+faculty.getName() + " faculty");
             }
-        }
-        return score;
+        } else throw new LackOfFacultyInTheUniversityException("Lack of faculty in this university.");
+
+        return (-1);
     }
 }

@@ -4,19 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Salad {
-    private String name;
+    //private String name;
     private ArrayList<Vegetable> vegetables;
 
-    public Salad(String name) {
-        this.name = name;
+    public Salad () {
         vegetables = new ArrayList<Vegetable>();
     }
-    public void addVegetable(Vegetable vegetable) {
-        vegetables.add(vegetable);
+
+    public ArrayList<Vegetable> getVegetables() {return vegetables;}
+
+    public void addVegetable(Vegetable newVegetable) {
+        Boolean repeatCheck = false;
+        for (Vegetable vegetable:vegetables) {
+            if (vegetable.name==newVegetable.name) {
+                repeatCheck = true;
+                System.out.printf("The %s was added earlier\n", newVegetable.name);
+                break;
+            }
+        }
+
+        if (!repeatCheck) vegetables.add(newVegetable);
     }
 
-    public void removeVegetable(Vegetable vegetable) {
-        vegetables.remove(vegetable);
+    public void removeVegetable(int indexOfVegetable) {
+        vegetables.remove(indexOfVegetable);
     }
 
     public double totalCalorie() {
@@ -35,10 +46,17 @@ public class Salad {
         Collections.sort(vegetables, new VegetableCaloriesComparator());
     }
 
+    public void findingVegetablesWithCalorieAroundSelected(int minCalorie, int maxCalorie) {
+        for (Vegetable vegetable:vegetables) {
+            if ((vegetable.getCalorie()>=minCalorie) && (vegetable.getCalorie()<=maxCalorie))
+                System.out.println(vegetable.name + ":\t" + vegetable.getCalorie());
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append("\t\t\t\t==").append(name).append("==\t\t\n");
+        result.append("\t\t\t\t==").append("==\t\t\n");
         for (Vegetable vegetable:vegetables) {
             result.append("\t\t").append(vegetable.name).append(": ").append(vegetable.calorie).append("\n");
         }
