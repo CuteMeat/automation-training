@@ -33,7 +33,6 @@ public class MainTask {
                 }
                 else result.append("|").append(item.getAbsolutePath()).append("\n");
             }
-//
             bufferedWriter.write(result.toString());
 
         } catch (IOException e) {
@@ -44,7 +43,6 @@ public class MainTask {
 
     public static void createList (StringBuilder result, String dir) {
         File dir1 = new File(dir) ;
-        result.append("\t");
         if (dir1.isDirectory()) {
             for (File item:dir1.listFiles()) {
                 result.append("\t");
@@ -52,11 +50,11 @@ public class MainTask {
                     result.append(item.getAbsolutePath()).append("\n");
                     createList(result, item.getAbsolutePath());
                 }
-                else result.append("\t|").append(item.getAbsolutePath()).append("\n");
+                else result.append("|").append(item.getAbsolutePath()).append("\n");
             }
         }
         else {
-            result.append("\t|").append(dir1.getAbsolutePath()).append("\n");
+            result.append("|").append(dir1.getAbsolutePath()).append("\n");
         }
 
     }
