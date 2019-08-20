@@ -21,7 +21,6 @@ public class ThirdTask {
             String tmpString = null;
             while ((tmpString = bufferedReader.readLine())!=null) {
 
-
                 String result = StringReplacer.replace(tmpString, Pattern.compile("\\w{3,}"), (Matcher matcher) -> {
                     return matcher.group().toUpperCase();
                 });
@@ -32,6 +31,5 @@ public class ThirdTask {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

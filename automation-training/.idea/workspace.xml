@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16c9be05-b0e4-4276-b9da-2842b05d6eed" name="Default Changelist" comment="" />
+    <list default="true" id="16c9be05-b0e4-4276-b9da-2842b05d6eed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/automation/jio/optional/ThirdTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/automation/jio/optional/ThirdTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/task/automation/jio/optional/ThirdTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/task/automation/jio/optional/ThirdTask.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ThirdTask">
+  <component name="RunManager" selected="Application.MainTask">
     <configuration name="FirstOptional" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.task.automation.jio.optional.FirstOptional" />
       <module name="automation-training" />
@@ -79,12 +83,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.task.automation.exceptions.main.Main" />
+    <configuration name="MainTask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.task.automation.jio.main.MainTask" />
       <module name="automation-training" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.task.automation.exceptions.main.*" />
+          <option name="PATTERN" value="com.task.automation.jio.main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,18 +124,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main (2)" />
-      <item itemvalue="Application.Main (4)" />
       <item itemvalue="Application.FirstOptional" />
       <item itemvalue="Application.SecondTask" />
       <item itemvalue="Application.ThirdTask" />
+      <item itemvalue="Application.MainTask" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainTask" />
         <item itemvalue="Application.ThirdTask" />
         <item itemvalue="Application.FirstOptional" />
         <item itemvalue="Application.SecondTask" />
         <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.Main (4)" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +157,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

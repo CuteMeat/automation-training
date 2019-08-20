@@ -1,0 +1,16 @@
+|E:\test\sf
+E:\test\test1
+			|E:\test\test1\file1.txt
+	E:\test\test1\test11
+			|E:\test\test1\test11\file111.txt
+E:\test\test2
+		E:\test\test2\as
+			|E:\test\test2\sdfsdf.txt
+		|E:\test\test2\wrqw.txt
+E:\test\test3
+		E:\test\test3\afsasf
+			|E:\test\test3\afsasf\asfafsafaf.txt
+		|E:\test\test3\afsasf\dsfsfsdf.txt
+	E:\test\test3\afsasf\sdfsdfsd
+			|E:\test\test3\afsasf\sdfsdfsd\dsfsfsdf.txt
+		|E:\test\test3\asfafsafaf.txt
