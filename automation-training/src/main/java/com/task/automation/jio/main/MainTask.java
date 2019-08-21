@@ -36,13 +36,13 @@ public class MainTask {
                 String tmpString = null;
                 ArrayList<String> listOfFiles = new ArrayList<String>();
                 while((tmpString = bufferedReader.readLine()) != null) {
-                    Pattern pattern = Pattern.compile("[^\\t|]");
+                    Pattern pattern = Pattern.compile("[^\\t*|\\|].*");
                     Matcher matcher = pattern.matcher(tmpString);
-                    StringBuilder result = new StringBuilder();
+
                     while(matcher.find()) {
-                        result.append(matcher.group());
+                       tmpString = tmpString.substring(matcher.start(), matcher.end());
                     }
-                    listOfFiles.add(result.toString());
+                    listOfFiles.add(tmpString);
                 }
 
                 int amountOfFiles = amountOfFiles(listOfFiles);
