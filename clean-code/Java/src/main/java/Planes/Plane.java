@@ -15,6 +15,10 @@ abstract public class Plane {
         this.maxLoadCapacity = maxLoadCapacity;
     }
 
+    public String getModel() {
+        return model;
+    }
+
     public int getMaxSpeed() {
         return maxSpeed;
     }
@@ -23,7 +27,7 @@ abstract public class Plane {
         return maxFlightDistance;
     }
 
-    public int getMinLoadCapacity() {
+    public int getMaxLoadCapacity() {
         int result = this.maxLoadCapacity;
         return result;
     }
@@ -31,22 +35,27 @@ abstract public class Plane {
     @Override
     public String toString() {
         return "Plane{" +
-                "model='" + model + '\'' +
-                ", maxSpeed=" + maxSpeed +
+                "model='" + model +
+                "\', maxSpeed=" + maxSpeed +
                 ", maxFlightDistance=" + maxFlightDistance +
                 ", maxLoadCapacity=" + maxLoadCapacity +
                 '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Plane)) return false;
-        Plane plane = (Plane) o;
-        return maxSpeed == plane.maxSpeed &&
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Plane plane = (Plane) obj;
+        return  maxSpeed == plane.maxSpeed &&
                 maxFlightDistance == plane.maxFlightDistance &&
                 maxLoadCapacity == plane.maxLoadCapacity &&
-                Objects.equals(model, plane.model);
+                (model == plane.getModel() || (model != null && Objects.equals(model, plane.model)));
     }
 
     @Override
