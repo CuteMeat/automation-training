@@ -4,13 +4,11 @@ import Planes.MilitaryPlane;
 import Planes.PassengerPlane;
 import Planes.Plane;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-/**
- * @author Vitali Shulha
- * @version 1. 1
- * @since 04.01.2019
- */
 
 public class Airport {
     private List<? extends Plane> planes;
@@ -102,29 +100,20 @@ public class Airport {
 
     //region Sort
     public Airport sortByMaxLoadCapacity() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane o1, Plane o2) {
-                return o1.getMaxLoadCapacity() - o2.getMaxLoadCapacity();
-            }
-        });
+        Comparator<Plane> comparator = Comparator.comparing(obj ->obj.getMaxLoadCapacity());
+        Collections.sort(planes, comparator);
         return this;
     }
 
     public Airport sortByMaxDistance() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane o1, Plane o2) {
-                return o1.getMaxFlightDistance() - o2.getMaxFlightDistance();
-            }
-        });
+        Comparator<Plane> comparator = Comparator.comparing(obj ->obj.getMaxFlightDistance());
+        Collections.sort(planes, comparator);
         return this;
     }
 
     public Airport sortByMaxSpeed() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane o1, Plane o2) {
-                return o1.getMaxSpeed() - o2.getMaxSpeed();
-            }
-        });
+        Comparator<Plane> comparator = Comparator.comparing(obj ->obj.getMaxSpeed());
+        Collections.sort(planes, comparator);
         return this;
     }
     //endregion Sort
